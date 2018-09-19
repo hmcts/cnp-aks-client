@@ -1,4 +1,4 @@
 .DEFAULT=build
 
 build:
-	docker build -t hmcts/cnp-aks-client .
+	docker build --no-cache -t hmcts/cnp-aks-client-dev .
