@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azure-cli:2.3.0
+FROM mcr.microsoft.com/azure-cli:2.12.0
 
 RUN apk update --no-cache \
   && apk add --no-cache gettext rsync \
