@@ -10,5 +10,8 @@ RUN apk update --no-cache \
   && addgroup -S -g 1001 jenkins \
   && adduser -S -D -G jenkins -u 1001 jenkins \
   && mkdir -p /opt/jenkins \
-  && chown jenkins:jenkins /opt/jenkins
+  && chown jenkins:jenkins /opt/jenkins \
+# TODO remove hotfix after mitigated / patched by Azure, see https://github.com/Azure/azure-cli/pull/17509
+  && curl https://raw.githubusercontent.com/Azure/azure-cli/fix-managed_by_tenants/src/azure-cli-core/azure/cli/core/_profile.py --output /usr/local/lib/python3.6/site-packages/azure/cli/core/_profile.py
+
 
