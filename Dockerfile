@@ -1,7 +1,9 @@
-FROM mcr.microsoft.com/azure-cli:2.21.0
+FROM mcr.microsoft.com/azure-cli:2.39.0
 
 RUN apk update --no-cache \
   && apk add --no-cache gettext rsync \
+  && wget https://github.com/fluxcd/flux2/releases/download/v0.30.2/flux_0.30.2_linux_amd64.tar.gz -O -  | tar xz \
+  && mv flux /usr/local/bin/flux \
   && wget https://dl.k8s.io/release/v1.20.5/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
   && wget https://get.helm.sh/helm-v3.5.3-linux-amd64.tar.gz -O - | tar xz \
   && mv /linux-amd64/helm /usr/local/bin/helm \
@@ -10,8 +12,8 @@ RUN apk update --no-cache \
   && addgroup -S -g 1001 jenkins \
   && adduser -S -D -G jenkins -u 1001 jenkins \
   && mkdir -p /opt/jenkins \
-  && chown jenkins:jenkins /opt/jenkins \
+  && chown jenkins:jenkins /opt/jenkins
 # TODO remove hotfix after mitigated / patched by Azure, see https://github.com/Azure/azure-cli/pull/17509
-  && curl https://raw.githubusercontent.com/Azure/azure-cli/fix-managed_by_tenants/src/azure-cli-core/azure/cli/core/_profile.py --output /usr/local/lib/python3.6/site-packages/azure/cli/core/_profile.py
+  # && curl https://raw.githubusercontent.com/Azure/azure-cli/fix-managed_by_tenants/src/azure-cli-core/azure/cli/core/_profile.py --output /usr/local/lib/python3.8/site-packages/azure/cli/core/_profile.py
 
 
