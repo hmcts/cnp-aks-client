@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/azure-cli:2.39.0
 
-ENV FLUX_VERSION=0.30.2
-ENV KUBECTL_VERSION=1.20.5
-ENV HELM_VERSION=3.5.3
+ENV FLUX_VERSION=0.32.0
+ENV KUBECTL_VERSION=1.21.7
+ENV HELM_VERSION=3.9.3
 
 RUN apk update --no-cache \
   && apk add --no-cache gettext rsync \
