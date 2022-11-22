@@ -5,7 +5,7 @@ ENV KUBECTL_VERSION=1.21.7
 ENV HELM_VERSION=3.9.3
 
 RUN apk update --no-cache \
-  && apk add --no-cache gettext rsync \
+  && apk add --no-cache gettext rsync ncurses \
   && wget https://github.com/fluxcd/flux2/releases/download/v${FLUX_VERSION}/flux_${FLUX_VERSION}_linux_amd64.tar.gz -O -  | tar xz \
   && mv flux /usr/local/bin/flux \
   && wget https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl \
